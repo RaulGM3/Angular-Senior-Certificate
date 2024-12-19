@@ -1,23 +1,22 @@
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="example-container">
   <mat-drawer [opened]="opened ()" #drawer class="example-sidenav" mode="side">
     <h1>Senior Certificate</h1>
     <mat-list>
       <mat-list-item>
-        <a routerLink="/architecture" routerLinkActive="active">
+        <a routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ()">
           Architecture
         </a>
       </mat-list-item>
       <mat-list-item>
-        <a routerLink="/advanced-components" routerLinkActive="active">
+        <a routerLink="/advanced-components" routerLinkActive="active" (click)="closeOpened ()">
           Advanced Components
         </a>
       </mat-list-item>
       <mat-list-item>
-        <a routerLink="/intermediate-components" routerLinkActive="active">
+        <a routerLink="/intermediate-components" routerLinkActive="active" (click)="closeOpened ()">
           Intermediate Components
         </a>
       </mat-list-item>
-      <button mat-button-flat (click)="drawer.close ()"> Cerrar</button>
     </mat-list>
   </mat-drawer>
 

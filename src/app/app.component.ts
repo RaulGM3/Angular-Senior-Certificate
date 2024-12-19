@@ -16,4 +16,10 @@ import { StateService } from './state.service';
 export class AppComponent {
   title = 'AngularSenior';
   opened = linkedSignal (inject(StateService).toggleMenu);
+
+  constructor (private statServ: StateService) {}
+
+  closeOpened () {
+    this.statServ.onToggleMenu ();
+  }
 }
