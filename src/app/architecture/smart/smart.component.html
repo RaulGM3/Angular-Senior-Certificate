@@ -1,0 +1,20 @@
+<div class="smart">
+  <h2>SMART COMPONENT</h2>
+  <p>Only this component is supposed to comunicate with services and process the information.</p>
+  <p>Then, it passes is to the dumb components.</p>
+
+  <div class="container-with-serv">
+    <div class="child-container">
+      <app-dumb title="Child Component" description="The more flexible we are, the better. We only should look good and tell our parents that something happened" aclaration="Check the console to see the flow" />
+  
+      
+      <div class="data-cards">
+        @for (item of data; track item.id) {
+          <app-dumb2 [item]="item" (onButtonClicked)="onLogItemPressed ($event)" />
+        }
+      </div>
+    </div>
+  
+    <app-serv />
+  </div>
+</div>

@@ -1,4 +1,23 @@
-<h1>{{ title }}</h1>
+<h1><u>{{ title }}</u></h1>
 <p class="description">
-  {{ description () }}
+  Angular embraces reactive programming, where components know how to react to external events such as user clicks or data updates. When a component’s data model changes, then the component refreshes and renders its updated HTML right away.
 </p>
+<h2>Simple pattern to follow</h2>
+<ul>
+  <li>
+    <u><b>Container components (or “smart” components):</b></u> know how to get data and work with services 
+  </li>
+  <p>
+    <i matTooltip="This checks the entire tree of components when something happens" matTooltipPosition="below">Use ChangeDetectionStrategy.Default</i>
+  </p>
+  <li>
+    <u><b>Presentation components (a.k.a. “dumb” or “lazy” components):</b></u> that have to be fed with data 
+    <p>
+      <i matTooltip="Angular doesn't verify changes if no input change" matTooltipPosition="below">Use ChangeDetectionStrategy.OnPush</i>
+    </p>
+  </li>
+</ul>
+
+<h2>Example</h2>
+
+<app-smart />

@@ -2,20 +2,14 @@
   <mat-drawer [opened]="opened ()" #drawer class="example-sidenav" mode="side">
     <h1>Senior Certificate</h1>
     <mat-list>
-      <mat-list-item>
-        <a routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ()">
+      <mat-list-item routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ()">
           Architecture
-        </a>
       </mat-list-item>
-      <mat-list-item>
-        <a routerLink="/advanced-components" routerLinkActive="active" (click)="closeOpened ()">
+      <mat-list-item routerLink="/advanced-components" routerLinkActive="active" (click)="closeOpened ()">
           Advanced Components
-        </a>
       </mat-list-item>
-      <mat-list-item>
-        <a routerLink="/intermediate-components" routerLinkActive="active" (click)="closeOpened ()">
+      <mat-list-item routerLink="/intermediate-components" routerLinkActive="active" (click)="closeOpened ()">
           Intermediate Components
-        </a>
       </mat-list-item>
     </mat-list>
   </mat-drawer>
@@ -23,7 +17,9 @@
   <div class="example-sidenav-content">
     <app-toolbar></app-toolbar>
     <div class="container">
-      <router-outlet />
+      <main>
+        <router-outlet />
+      </main>
     </div>
   </div>
 
