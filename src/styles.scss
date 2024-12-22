@@ -10,19 +10,8 @@ a {
 * {
   box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6, p, li {
-  color: #000;
-  margin: 10px 0;
-}
-ul {
-  padding-left: 20px;
-  // line-height: 1.5;
-}
-p, li {
-  line-height: 1.6;
-  font-size: 1.1rem;
-}
-
 button.mat-mdc-outlined-button:not(:disabled) {
   color: black;
 }
+
+@import 'app/typography.scss';

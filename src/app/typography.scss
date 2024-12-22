@@ -1,0 +1,27 @@
+
+h1, h2, h3, h4, p, li {
+  color: #000;
+  margin: 10px 0;
+
+  &.sub-title {
+    margin-top: 40px;
+  }
+}
+ul {
+  padding-left: 20px;
+  // line-height: 1.5;
+}
+p, li {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+button.mat-mdc-outlined-button:not(:disabled) {
+  color: black;
+}
+
+span.heading {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}

@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./architecture/architecture.component').then(m => m.ArchitectureComponent)
   },
   {
+    path: 'dependency-injection',
+    loadComponent: () => import('./dependency-injection/dependency-injection.component').then(m => m.DependencyInjectionComponent)
+  },
+  {
     path: 'advanced-components',
     loadComponent: () => import('./advanced-components/advanced-components.component').then(m => m.AdvancedComponentsComponent)
   },

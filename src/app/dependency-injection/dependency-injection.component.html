@@ -1,0 +1,23 @@
+<h1>Dependency Injection</h1>
+
+<p><span class="heading">Angular's definition:</span>"DI" is a design pattern and mechanism for creating and delivering some parts of an app to other parts of an app that require them.</p>
+<p><span class="heading">Brief interpretation:</span>"DI" is the way Angular handles dependencies within your app.</p>
+
+<p>There are two roles:</p>
+<ul>
+  <li>Dependency Consumer <span matTooltip="Usually" matTooltipPosition="below">(Components)</span></li>
+  <li>Dependency Provider <span matTooltip="Usually" matTooltipPosition="below">(Services)</span></li>
+</ul>
+
+<h2 class="sub-title">What is an injector?</h2>
+<p style="text-wrap: wrap;">
+  The interaction between <b>dependency consumers</b> and <b>dependency providers</b> is handled by an abstraction called Injector. 
+</p>
+<p style="text-wrap: wrap;">
+  When a dependency is requested, the injector checks its registry to see if there is an instance already available there. If not, a new instance is created and stored in the registry. 
+</p>
+<p style="text-wrap: wrap;">
+  Angular creates an application-wide injector (also known as the "root" injector) during the application bootstrap process. 
+</p>
+
+<app-ng-modules></app-ng-modules>
