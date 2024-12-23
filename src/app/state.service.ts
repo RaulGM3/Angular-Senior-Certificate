@@ -7,7 +7,9 @@ export class StateService {
   title = signal ('AngularSenior');
   toggleMenu = signal (false);
 
-  constructor() { }
+  constructor() {
+    console.log ('StateService constructor')
+  }
 
   onToggleMenu () {
     console.log ('toggling ')
