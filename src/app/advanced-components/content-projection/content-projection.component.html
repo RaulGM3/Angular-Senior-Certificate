@@ -1,0 +1,34 @@
+<h2 class="sub-title">
+  Content Projection
+</h2>
+
+<p>Content projection is a way of passing content from a parent component to a child component so a child component is reusable in multiple cases.</p>
+
+<p>You can see an example of a content projection with a class selector style in the class-selector component</p>
+
+<code><pre>
+  &lt;!-- parent component -- &gt;
+  &lt;app-class-selector&gt;
+  &lt;h3 class="sub-title" title&gt;
+  Projected Content
+  &lt;/h3&gt;
+  &lt;p content&gt;
+  This content is projected from the parent component to the child component.
+  &lt;/p&gt;
+  &lt;/app-class-selector&gt;
+  
+  
+  &lt;!-- child projected component -- &gt;
+  &lt;ng-content select="[title]"&gt;&lt;/ng-content&gt;
+  &lt;p&gt;This is a separation of the two projected tags&lt;/p&gt;
+  &lt;ng-content select="[content]"&gt;&lt;/ng-content&gt;
+</pre></code>
+
+<app-projected>
+  <h3 class="sub-title" title>
+    Projected Content
+  </h3>
+  <p content>
+    This content is projected from the parent component to the child component.
+  </p>
+</app-projected>
