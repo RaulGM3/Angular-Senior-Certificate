@@ -1,0 +1,27 @@
+<h2 class="subtitle">
+  Selectors
+</h2>
+
+<p>
+  Selector is a parameter in <code>&#64;Component</code> decorator that creates a custom HTML tag for the component.
+</p>
+<p>There are three types</p>
+<ul>
+  <li>Type selectors: <code style="color: #b94040">app-custom-component</code></li>
+  <li>Attribute Selectors: <code style="color: #b9b940">[dropzone]:not(textarea)</code></li>
+  <li>Class Selectors: <code style="color: #52b940">.menu-item</code> </li>
+</ul>
+<p>You can even combine them!</p>
+
+<h3>Attribute Selector Example</h3>
+<p matTooltip="This is a component, not a directive" matTooltipPosition="right">A perfect example is a Tooltip</p>
+<p>You use it as a directive, but it adds a whole template to it.</p>
+
+<h3 class="subtitle">Class Selectors Example</h3>
+<div class="display-something">
+<code code><pre>    div class="display-component"</pre></code>
+  <h3 title>
+    div with a class that triggers the selector of class-selector-display.component
+  </h3>
+  <p aclaration>This is writen within the div, but projected by ng-content to the child component</p>
+</div>

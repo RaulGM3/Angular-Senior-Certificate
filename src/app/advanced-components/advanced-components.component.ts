@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { SelectorsComponent } from './selectors/selectors.component';
 
 @Component({
   selector: 'app-advanced-components',
-  imports: [],
+  imports: [SelectorsComponent],
   templateUrl: './advanced-components.component.html',
   styleUrl: './advanced-components.component.scss'
 })

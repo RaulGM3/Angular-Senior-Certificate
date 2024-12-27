@@ -4,7 +4,7 @@ mat-drawer-container {
 }
 
 mat-drawer {
-  width: 400px;
+  width: 300px;
 
   mat-list {
     mat-list-item {
@@ -36,10 +36,15 @@ mat-drawer-content {
     align-items: center;
     height: 100%;
     width: 100%;
-    // padding: 2rem;
-
+    background-color: #eaeaea;
+    padding: 2rem;
+    
     main {
+      padding: 0 2rem 2rem 2rem;
       width: 70%;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     .blanc-space {

@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer [opened]="opened ()" #drawer class="example-sidenav" mode="side">
+  <mat-drawer [opened]="opened ()" #drawer class="example-sidenav" mode="over">
     <h1>Senior Certificate</h1>
     <mat-list>
       <mat-list-item routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ()">
@@ -23,7 +23,7 @@
       <main>
         <router-outlet />
       </main>
-      <div class="blanc-space"></div>
+      <!-- <div class="blanc-space"></div> -->
     </div>
   </div>
 

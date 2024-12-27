@@ -1,0 +1,30 @@
+<h1 class="title">NgModules</h1>
+
+<p>An NgModule has two main responsibilities:</p>
+<ul>
+  <li>Declaring components, directives, and pipes that belong to the NgModule</li>
+  <li>Inject providers to the components, directives, and pipes that import the NgModule</li>
+</ul>
+<h2 class="sub-title">Properties</h2>
+<p>
+  <u><i>Declarations:</i></u> Declares the components, directives, and pipes that belong to the NgModule.
+</p>
+<p>
+  <u><i>Imports:</i></u> Habilitates the dependencies for the components, directives, and pipes declared in the NgModule.
+</p>
+<p>
+  <u><i>Exports:</i></u> An NgModule can export its declared components, directives, and pipes such that they're available to other components and NgModules
+</p>
+<p>
+  <u><i>Providers:</i></u> This property is used to inject services into the classes that belong to the NgModule.
+</p>
+
+
+<h2 class="sub-title">forRoot and forChild pattern</h2>
+
+<p>
+  The forRoot pattern is used to instanciate a service only once in the root of the application. This is useful when you want to share the same instance of a service across the entire application. <b>It will be initialized at the bootstrap of the application</b>
+</p>
+<p>
+  The forChild pattern is used to instanciate a service within a lazy-loaded module. Will be shared between the component and their children. <b>It will be initialized at the render of the component</b>
+</p>
