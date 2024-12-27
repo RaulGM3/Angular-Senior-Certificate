@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdvancedComponentsComponent } from './advanced-components/advanced-components.component';
+import { SignalsComponent } from './signals/signals.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'intermediate-components',
     loadComponent: () => import('./intermediate-components/intermediate-components.component').then(m => m.IntermediateComponentsComponent)
+  },
+  {
+    path: 'signals',
+    loadComponent: () => import('./signals/signals.component').then(m => m.SignalsComponent)
   },
   {
     path: '',

@@ -13,12 +13,16 @@ a {
 button.mat-mdc-outlined-button:not(:disabled) {
   color: black;
 }
-
+pre {
+  background-color: rgb(227, 230, 232);
+  border-radius: 5px;
+}
 code {
   background-color: rgb(227, 230, 232);
   border-radius: 3px;
   color: rgb(12, 13, 14);
   padding: 0.2em 0.4em;
+  line-height: 1.6;
 }
 
 @import 'app/typography.scss';

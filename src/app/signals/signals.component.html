@@ -1,0 +1,115 @@
+<h1 class="title">Signals</h1>
+
+<p>
+  A signal is a wrapper around a value that notifies interested consumers when that value changes. Any primitive value.
+</p>
+
+<pre>
+  <code>
+    import &#123; signal &#125; from '&#64;angular/core';
+
+    mySignal = signal ('test');
+
+    constructor () &#123;
+      <span class="comment">// to set new value</span>
+      this.mySignal.set('new value');
+      
+      <span class="comment">// to update the value based on a previous value:</span>
+      this.mySignal.update(value => value + ' updated');
+    &#125;
+  </code>
+</pre>
+
+<button mat-flat-button (click)="onUpdateSignal ()">Update Signal</button>
+{{ mySignal () }}
+
+<h3 class="sub-title">Computed</h3>
+<p>Computed signal are read-only signals that derive their value from other signals.</p>
+
+<pre>
+  <code>
+  import &#123; computed &#125; from '&#64;angular/core';
+  numberSignal = signal (0);
+  doubleSignal = computed (() => this.numberSignal () * 2);
+  </code>
+</pre>
+
+<button mat-flat-button (click)="onIncreaseSignal ()">Increase Signal</button>
+doubleSignal: {{ doubleSignal () }}
+
+<p>
+  Computed signals are both lazily evaluated and memoized
+</p>
+<p>
+  <code>doubleCount</code>'s derivation function does not run to calculate its value until the first time you read doubleCount. The calculated value is then cached, and if you read doubleCount again, it will return the cached value without recalculating.
+</p>
+<p><b>
+  Computed signals are not writable signals.
+</b></p>
+
+<p>
+  Another cool thing about Computed is that you can add dependencies to it. This means that if any of the dependencies change, the Computed signal will be updated.
+</p>
+<pre>
+  <code>
+    showCount = signal(false);
+    count = signal(0);
+    conditionalCount = computed(() => &#123;
+      if (showCount()) &#123;
+        return `The count is $&#123;count()&#125;.`;
+      &#125; else &#123;
+        return 'Nothing to see here!'; <span class="comment">// if showCount () is false, this value will not be even read.</span>
+      &#125;
+    &#125;);
+  </code>
+</pre>
+
+<h1 class="title">
+  <span class="code">
+    Effect ()
+  </span>
+</h1>
+<p>
+  Usefull when you want to log a signal's changed value.
+</p>
+<p>
+  Not recommended for state changes. Use <span class="code">computed</span> instead.
+</p>
+
+<pre>
+  <code>
+    constructor () &#123; <span class="comment">// Note that it's within the constructor or ngOnInit</span>
+      effect(() => &#123;
+        console.log(`The current count is: $&#123;count()&#125;`);
+      &#125;);
+    &#125;
+  </code>
+</pre>
+
+<h2 class="sub-title">RxJS interop with Angular signals</h2>
+<p>
+  Let's work with RxJS observables and Angular signals.
+</p>
+
+<h3 class="sub-title">From RxJS to Angular signals</h3>
+<pre>
+  <code>
+  import &#123; toSignal &#125; from '&#64;angular/core/rxjs-interop';
+
+  count = signal(0);
+  obs = new Subject&lt;number&gt;();
+  obsSignal = toSignal(this.obs, &#123; initialValue: 0 &#125;);
+
+  constructor () &#123;
+    effect(() => &#123;
+      console.log('new obsSignal: ', this.obsSignal());
+    &#125;);
+    
+    const counter = setInterval(() => &#123;
+      this.count.update(() => this.count() + 1);
+      this.obs.next(this.count());
+      if (this.count() === 3) clearInterval(counter);
+    &#125;, 1000);
+  &#125;
+  </code>
+</pre>
