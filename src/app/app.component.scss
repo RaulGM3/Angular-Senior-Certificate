@@ -1,5 +1,5 @@
 mat-drawer-container {
-  height: 100vh;
+  height: calc(100vh - 64px);
   max-width: 100vw;
   overflow-y: hidden;
 }
@@ -9,20 +9,38 @@ mat-drawer {
   
   mat-list {
     mat-list-item {
+      user-select: none;
       &:not(:last-child) {
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       }
       cursor: pointer;
+      &.active {
+        background-color: #eaeaea;;
+      }
+      &:hover {
+        background-color: #e1cccc8f;
+      }
+      &.active:focus {
+        background-color: #eaeaea;
+      }
+
+      &::before {
+        display: none;
+      }
+      
     }
   }
 }
 
 mat-drawer-content {
+  max-height: calc(100vh - 64px);
   max-width: 100vw;
+  box-shadow: inset rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 .example-container {
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .example-sidenav-content {
@@ -35,7 +53,7 @@ mat-drawer-content {
   .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     height: 100%;
     width: 100%;
     background-color: #eaeaea;

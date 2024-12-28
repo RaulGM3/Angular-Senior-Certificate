@@ -1,5 +1,7 @@
+
+<app-toolbar></app-toolbar>
 <mat-drawer-container class="example-container">
-  <mat-drawer [opened]="opened ()" #drawer class="example-sidenav" mode="over">
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <h1>Senior Certificate</h1>
     <mat-list>
       <mat-list-item routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ()">
@@ -21,7 +23,6 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <app-toolbar></app-toolbar>
     <div class="container">
       <main>
         <router-outlet />

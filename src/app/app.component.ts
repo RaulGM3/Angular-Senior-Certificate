@@ -1,5 +1,5 @@
 import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -9,7 +9,7 @@ import { StateService } from './state.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatSidenavModule, MatListModule, ToolbarComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, MatSidenavModule, MatListModule, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
