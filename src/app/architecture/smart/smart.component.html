@@ -10,7 +10,7 @@
       
       <div class="data-cards">
         @for (item of data; track item.id) {
-          <app-dumb2 [item]="item" (onButtonClicked)="onLogItemPressed ($event)" />
+          <app-dumb2 [item]="item" (onButtonClicked)="onLogItemPressed ($event)" style="flex-basis: 100%;" />
         }
       </div>
     </div>

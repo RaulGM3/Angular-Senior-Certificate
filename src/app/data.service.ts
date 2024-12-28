@@ -8,23 +8,26 @@ export class DataService {
     {
       id: 1,
       name: 'Data 1',
-      description: 'This is the first data'
+      description: 'first'
     },
     {
       id: 2,
       name: 'Data 2',
-      description: 'This is the second data'
+      description: 'second'
     },
     {
       id: 3,
       name: 'Data 3',
-      description: 'This is the third'
+      description: 'third'
     }
   ];
+  
 
   clickedList = signal<number[]>([]);
 
-  constructor() { }
+  constructor() {
+
+  }
 
   getData() {
     return this.data;

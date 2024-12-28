@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,14 +13,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  title = signal ('')
+  isMobile = linkedSignal (inject (StateService).isMobile);
+  title = linkedSignal (inject(StateService).title);
   
   constructor (private statServ: StateService) {
-
   }
-
+  
   ngOnInit () {
-    this.title.set (this.statServ.title ());
+    // this.title.set (this.statServ.title ());
   }
 
   triggerToggleMenu () {

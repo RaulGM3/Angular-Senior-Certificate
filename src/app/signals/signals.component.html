@@ -43,6 +43,7 @@ doubleSignal: {{ doubleSignal () }}
 <p>
   Another cool thing about Computed is that you can toggle dependencies. This means that if any of the dependencies isn't read, then the computed is not gonna be executed.
 </p>
+
 <pre><code> showCount = signal(false);
   count = signal(0);
   conditionalCount = computed(() => &#123;
@@ -54,11 +55,23 @@ doubleSignal: {{ doubleSignal () }}
   &#125;);</code>
 </pre>
 
-<h1 class="title">
+<p>
+  Signals use referential equality. So when using objects or arrays, you need to create a new object or array to trigger the signal.
+</p>
+
+<pre><code> myArray = signal([]);
+  
+  onPushArray (x: number) &#123;
+    this.myArray.update (arr => [...arr, x]);
+  &#125; <span class="comment">// This will trigger all computed and effects.</span>
+    </code>
+</pre>
+
+<h2 class="sub-title">
   <span class="code">
     Effect ()
   </span>
-</h1>
+</h2>
 <p>
   Usefull when you want to log a signal's changed value.
 </p>
@@ -69,7 +82,9 @@ doubleSignal: {{ doubleSignal () }}
 <pre>
   <code>constructor () &#123; <span class="comment">// Note that it's within the constructor or ngOnInit</span>
       effect(() => &#123;
-        console.log(`The current count is: $&#123;count()&#125;`);
+        <span class="comment">// We will use the previous example's count() signal. Check the console for the effect's effect.</span>
+        console.log(`The current count is: $&#123;count()&#125; and the title is: $&#123;untracked(title)&#125;`);
+        <span class="comment">// You can use untracked if you want to use the value of a signal but not trigger the effect when changed.</span>
       &#125;);
     &#125;</code>
 </pre>
@@ -98,3 +113,43 @@ doubleSignal: {{ doubleSignal () }}
     &#125;, 1000);
   &#125;</code>
 </pre>
+
+
+<h3 class="sub-title"><span class="code">linkedSignal ()</span></h3>
+<p>
+  This is the way of managing state with <span class="code">signals</span> in Angular. You link a signal to an observable or to another signal in a service.
+</p>
+<p>Note that it is an independent signal from the observable, so you can use <span class="code">myLinkedSignal.set ('New Title')</span>, and it won't affect the linked dependency.</p>
+
+<h4 class="sub-title">Let's play with the linkedSignal</h4>
+<p>We used a linkedSignal as a state in the app. It's the toolbar's title.</p>
+<p>
+  The current value of this component's title is: <span class="code">{{ title () }}</span>. 
+</p>
+<p>
+  Check the toolbar to see the current value of the observable.
+</p>
+<button mat-flat-button (click)="changeTitle ()">Change Title In Component</button> 
+<button mat-raised-button (click)="changeTitleInService ()">Change Observable's Title</button>
+
+<p>
+  Notice that the linkedSignal won't execute if the observable's value is the same as the previous one. It is not an error, just click on Signals in the sidebar.
+</p>
+
+<pre><code> import &#123; signal, linkedSignal &#125; from '&#64;angular/core';
+  
+  export class SignalsComponent &#123;
+
+    title = linkedSignal(inject (StateService).title);
+
+    changeTitle () &#123;
+      this.title.set('New Title');
+    &#125;
+
+    constructor (private stateServ: StateService) &#123;&#125;
+
+    changeTitleInService () &#123;
+      this.titleService.setTitle('Observable Changed Title');
+    &#125;
+  &#125;
+</code></pre>

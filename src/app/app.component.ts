@@ -16,10 +16,18 @@ import { StateService } from './state.service';
 export class AppComponent {
   title = 'AngularSenior';
   opened = linkedSignal (inject(StateService).toggleMenu);
+  isMobile = linkedSignal (inject (StateService).isMobile);
 
   constructor (private statServ: StateService) {}
 
-  closeOpened () {
+  closeOpened (title: string) {
+    this.statServ.onUpdateTitle (title);
     this.statServ.onToggleMenu ();
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.statServ.setMobile (window.innerWidth < 750);
   }
 }
