@@ -11,12 +11,33 @@
 
 <h2 class="sub-title">What is an injector?</h2>
 <p style="text-wrap: wrap;">
-  The interaction between <b>dependency consumers</b> and <b>dependency providers</b> is handled by an abstraction called Injector. 
+  The interaction between <span class="code" matTooltip="Components">dependency consumers</span> and <span class="code" matTooltip="Services">dependency providers</span> is handled by an abstraction called Injector. 
 </p>
 <p style="text-wrap: wrap;">
-  When a dependency is requested, the injector checks its registry to see if there is an instance already available there. If not, a new instance is created and stored in the registry. 
+  When a <span class="code" matTooltip="An external file that is required or used. Every import are dependencies.">dependency</span> is requested, the injector checks its registry to see if there is an instance already available there. If not, a new instance is created and stored in the registry. 
 </p>
 <p style="text-wrap: wrap;">
   Angular creates an application-wide injector (also known as the "root" injector) during the application bootstrap process. 
 </p>
 
+<h2 class="sub-title">Circular Dependency</h2>
+<p>Let's say a <span class="code">ServiceState</span> requires a <span class="code">AuthService</span> to function and the <span class="code">AuthService</span> requires the <span class="code">ServiceState</span> to function. This is a circular dependency.</p>
+<p>This will trigger a compile error.</p>
+<p>Don't do it.</p>
+<p>So advanced...</p>
+
+<h2 class="sub-title">Dependency Injection Hierarchy</h2>
+<p>
+  By default, every service is registered in the root injector. This means that every service is available to every component in the application and it's processed when entering the platform. <span class="code">&#64;Injectable(&#123; providedIn: 'root'&#125;)</span>
+</p>
+
+<p>This, of course is not optimal when creating a mid to big platform.</p>
+
+<pre><code>&#64;Injectable() <span class="comment">// you can delete the &#123; providedIn: 'root'&#125;</span>
+      
+<span class="comment">// And in the head of a component, you provide it to lazyly load it when the component is first rendered</span>
+&#64;Component(&#123; <span class="comment">// or NgModule</span>
+...
+providers: [MyService] // Provide the service here
+&#125;)</code></pre>
+<p>The component where you provide the service must be the parent of every component that is going to use it. Brother components won't have access to the same instance.</p>

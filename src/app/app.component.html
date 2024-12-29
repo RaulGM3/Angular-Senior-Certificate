@@ -2,7 +2,8 @@
 <app-toolbar></app-toolbar>
 <mat-drawer-container class="example-container">
     <mat-drawer [opened]="isMobile () ? opened () : 'true'" #drawer class="example-sidenav" [mode]="isMobile () ? 'over' : 'side'">
-    <h1>Senior Certificate</h1>
+    <h1>Angular Notes</h1>
+    <h3>Advanced</h3>
     <mat-list>
       <mat-list-item routerLink="/architecture" routerLinkActive="active" (click)="closeOpened ('Architecture')">
         Architecture
