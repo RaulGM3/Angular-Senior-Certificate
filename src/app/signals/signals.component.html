@@ -1,8 +1,10 @@
-<h1 class="title">Signals</h1>
 
+<h1 class="title">Signals</h1> 
 <p>
   A signal is a wrapper around a value that notifies interested consumers when that value changes. Any primitive value.
 </p>
+
+
 
 <pre><code> import &#123; signal &#125; from '&#64;angular/core';
 
@@ -28,7 +30,12 @@
 </pre>
 
 <button mat-flat-button (click)="onIncreaseSignal ()">Increase Signal</button>
-doubleSignal: {{ doubleSignal () }}
+<p>
+  numberSignal: {{ numberSignal () }}
+</p>
+<p>
+  doubleSignal: {{ doubleSignal () }}
+</p>
 
 <p>
   Computed signals are both lazily evaluated and memoized
@@ -115,7 +122,7 @@ doubleSignal: {{ doubleSignal () }}
 </pre>
 
 
-<h3 class="sub-title"><span class="code">linkedSignal ()</span></h3>
+<h2 class="sub-title"><span class="code">linkedSignal ()</span></h2>
 <p>
   This is the way of managing state with <span class="code">signals</span> in Angular. You link a signal to an observable or to another signal in a service.
 </p>
@@ -153,3 +160,48 @@ doubleSignal: {{ doubleSignal () }}
     &#125;
   &#125;
 </code></pre>
+
+<h2 class="sub-title"><span class="code">model ()</span></h2>
+<p>
+  <span class="code">model ()</span> inputs are a special type of <span class="code" matTooltip="A component input">input</span> that enable a component to propagate new values back to another component.
+</p>
+
+<h4>Parent Component</h4>
+<pre><code ngNonBindable> import &#123; signal &#125; from '&#64;angular/core';
+
+  &#64;Component (&#123;
+    selector: 'app-parent',
+    template: `&lt;app-child [(childAge)]="parentAge"&gt;&lt;/app-child&gt;
+    &#123;&#123; parentAge () &#125;&#125;`,
+  &#125;)
+  
+  export class ParentComponent &#123;
+  parentAge = signal(0);
+&#125;
+</code></pre>
+
+<h4>Child Component</h4>
+<pre><code ngNonBindable> import &#123; model &#125; from '&#64;angular/core';
+
+  &#64;Component (&#123;
+    selector: 'app-child',
+    template: `  &lt;label&gt;Child Input&lt;/label&gt;
+    &lt;input type=&quot;number&quot; [value]=&quot;childAge ()&quot; (keyup)=&quot;change ($event)&quot;&gt;
+    &lt;p&gt;As you can see, it doesnt replicate entirely the [(ngModel)] on input as it has some delay replicating the signal on other components.&lt;/p&gt;`,
+  &#125;)
+  
+  export class ParentComponent &#123;
+  childAge = model (21);
+
+  change (ev: Event) &#123;
+    console.log (ev)
+    this.childAge.set (parseInt ((ev.target as HTMLInputElement).value));
+  &#125;
+&#125;</code></pre>
+
+<p>And just like that you have an [(ngModel)] that works with signals and with parent child components.</p>
+  
+<h3>Example</h3>
+<p>Let's get our <span class="code">numberSignal ()</span> signal from before.</p>
+<span class="code">{{ numberSignal () }}</span>
+<app-model-child [(childAge)]="numberSignal"></app-model-child>

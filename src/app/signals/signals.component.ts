@@ -6,10 +6,11 @@ import { Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { StateService } from '../state.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ModelChildComponent } from './model-child/model-child.component';
 
 @Component({
   selector: 'app-signals',
-  imports: [CommonModule, MatButtonModule, MatTooltipModule],
+  imports: [CommonModule, MatButtonModule, MatTooltipModule, ModelChildComponent],
   templateUrl: './signals.component.html',
   styleUrl: './signals.component.scss'
 })

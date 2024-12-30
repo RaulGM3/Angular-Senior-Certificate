@@ -1,4 +1,4 @@
-import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -18,16 +18,16 @@ export class AppComponent {
   opened = linkedSignal (inject(StateService).toggleMenu);
   isMobile = linkedSignal (inject (StateService).isMobile);
 
-  constructor (private statServ: StateService) {}
+  constructor (private statServ: StateService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   closeOpened (title: string) {
     this.statServ.onUpdateTitle (title);
     this.statServ.onToggleMenu ();
   }
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.statServ.setMobile (window.innerWidth < 750);
+  ngAfterContentInit(): void {
+    console.log ('AppComponent ngAfterContentInit');
+    if (typeof window !== "undefined")
+      this.statServ.setMobile(window.innerWidth < 750);
   }
 }
