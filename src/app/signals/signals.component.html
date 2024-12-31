@@ -203,5 +203,11 @@
   
 <h3>Example</h3>
 <p>Let's get our <span class="code">numberSignal ()</span> signal from before.</p>
-<span class="code">{{ numberSignal () }}</span>
-<app-model-child [(childAge)]="numberSignal"></app-model-child>
+<div class="parent-component smart">
+  <p>
+    Parent Component <span class="code">{{ numberSignal () }}</span>
+  </p>
+  <div class="child-component dumb">
+    <app-model-child [(childAge)]="numberSignal"></app-model-child>
+  </div>
+</div>
