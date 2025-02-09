@@ -18,4 +18,13 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
+  @if (needsLogin ()) {
+    <button (click)="login ()" mat-icon-button class="person-icon" aria-label="Login icon-button with share icon">
+      <mat-icon>person</mat-icon>
+    </button>
+  } @else {
+    <button (click)="logout ()" mat-icon-button class="person-icon" aria-label="Logout icon-button with share icon">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  }
 </mat-toolbar>

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { StateService } from '../state.service';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +17,7 @@ export class ToolbarComponent {
   isMobile = linkedSignal (inject (StateService).isMobile);
   title = linkedSignal (inject(StateService).title);
   
-  constructor (private statServ: StateService) {
+  constructor (private authServ: AuthService, private statServ: StateService) {
   }
   
   ngOnInit () {
@@ -25,5 +26,18 @@ export class ToolbarComponent {
 
   triggerToggleMenu () {
     this.statServ.onToggleMenu ();
+  }
+
+  needsLogin () {
+    return !this.authServ.isLoggedIn ();
+
+  }
+
+  login () {
+    this.authServ.login ();
+  }
+
+  logout () {
+    this.authServ.logout ();
   }
 }

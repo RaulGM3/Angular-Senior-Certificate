@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./signals/signals.component').then(m => m.SignalsComponent)
   },
   {
+    path: 'ng-modules',
+    loadComponent: () => import('./ng-modules/ng-modules.component').then(m => m.NgModulesComponent)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

@@ -16,12 +16,12 @@ describe('AuthService', () => {
     localStorage.removeItem ('token');
   })
 
-  fit('Should return true if localStorage has a value', () => {
+  it('Should return true if localStorage has a value', () => {
     localStorage.setItem ('token', '123');
     expect(service?.isLoggedIn ()).toBeTruthy();
   });
 
-  fit ('Should return false if the localstorage has no value', () => {
+  it ('Should return false if the localstorage has no value', () => {
     expect (service?.isLoggedIn ()).toBeFalsy()
   })
 });

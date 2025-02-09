@@ -1,19 +1,31 @@
-import { Injectable, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  loggedIn = signal (false)
-
+  platformId = inject(PLATFORM_ID);
   constructor() {
   }
   
   isLoggedIn () {
-    if (localStorage.getItem ('token')) {
-      this.loggedIn.set (true);
-      return true;
-    }  
-    return false;
+    if (isPlatformBrowser (this.platformId)) {
+      return !!localStorage.getItem ('token') // más cool que lo de abajo 
+      // if (localStorage.getItem ('token')) {
+      //   return true;
+      // }  
+      // return false;
+    } else {
+      return false;
+    }
+  }
+
+  login () {
+    localStorage.setItem ('token', '123')
+  }
+
+  logout () {
+    localStorage.clear ();
   }
 }
