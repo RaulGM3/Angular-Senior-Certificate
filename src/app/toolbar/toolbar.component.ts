@@ -1,4 +1,4 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';

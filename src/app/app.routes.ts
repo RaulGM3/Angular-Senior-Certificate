@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { AdvancedComponentsComponent } from './advanced-components/advanced-components.component';
-import { SignalsComponent } from './signals/signals.component';
 
 export const routes: Routes = [
   {
